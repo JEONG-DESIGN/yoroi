@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yoroi theme documentation</title>
+  <meta name="description" content="How to set up and use Yoroi, a Shopify theme for eyewear stores.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="top">
+    <a class="brand" href="./">Yoroi</a>
+    <nav aria-label="Site">
+      <a href="./" aria-current="page">Documentation</a>
+      <a href="support.html">Support</a>
+    </nav>
+  </header>
+
+  <div class="layout">
+    <nav class="toc" aria-label="On this page">
+      <ol>
+        <li><a href="#install">Install</a></li>
+        <li><a href="#first-setup">First setup</a></li>
+        <li><a href="#metafields">Product metafields</a></li>
+        <li><a href="#settings">Theme settings</a></li>
+        <li><a href="#home">Home page sections</a></li>
+        <li><a href="#product">Product page</a></li>
+        <li><a href="#photos">Photos</a></li>
+        <li><a href="#fit-sizes">Fit sizes</a></li>
+        <li><a href="#filters">Filters and search</a></li>
+        <li><a href="#code">Editing code</a></li>
+        <li><a href="#faq">Questions</a></li>
+        <li><a href="#support-policy">Support policy</a></li>
+        <li><a href="#releases">Release notes</a></li>
+      </ol>
+    </nav>
+
+    <main id="content">
+      <h1>Yoroi documentation</h1>
+      <p class="lead">Yoroi is a Shopify theme for eyewear stores. Customers find frames by shape, color and fit size, see exact measurements, and choose lenses with the frame.</p>
+      <p>Version 1.0.0. Three presets are included: <strong>Yoroi</strong> (white), <strong>Kinari</strong> (off-white) and <strong>Sumi</strong> (black).</p>
+
+      <h2 id="install">Install</h2>
+      <ol>
+        <li>In your Shopify admin, go to <strong>Online Store &gt; Themes</strong> and add Yoroi from the Theme Store.</li>
+        <li>The theme is added as an unpublished theme. Select <strong>Customize</strong> to look through it with your own products.</li>
+        <li>Work through <a href="#first-setup">First setup</a> below, then select <strong>Publish</strong>.</li>
+      </ol>
+      <p>To change the look later, go to <strong>Theme settings &gt; Theme style</strong> in the theme editor and pick another preset. Changing the style replaces colors and some settings, but never your products or content.</p>
+
+      <h2 id="first-setup">First setup</h2>
+      <p>Anything you have not set up is simply hidden. Nothing on the storefront breaks.</p>
+      <table>
+        <thead><tr><th scope="col">What</th><th scope="col">Where</th><th scope="col">What it does</th></tr></thead>
+        <tbody>
+          <tr><td>Product metafields</td><td>Settings &gt; Custom data &gt; Products</td><td>Frame measurements, fit size, specifications and worn photos. See <a href="#metafields">Product metafields</a>.</td></tr>
+          <tr><td>A page using the <code>page.size-guide</code> template</td><td>Online Store &gt; Pages, then Theme settings &gt; Fit sizes &gt; Size guide page</td><td>A size table built from your fit size settings, linked from every product.</td></tr>
+          <tr><td>A page using the <code>page.contact</code> template</td><td>Online Store &gt; Pages</td><td>Contact form.</td></tr>
+          <tr><td>Collections for each shape and color you sell</td><td>Products &gt; Collections</td><td>Used by the <em>Shop by shape</em> and <em>Shop by color</em> sections. Smart collections with a metafield condition work well.</td></tr>
+          <tr><td>Main menu and footer menu</td><td>Online Store &gt; Navigation</td><td>The header and footer. Menus can be three levels deep.</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="metafields">Product metafields</h2>
+      <p>Yoroi reads product metafields in the <code>eyewear</code> namespace. Create the definitions you need under <strong>Settings &gt; Custom data &gt; Products &gt; Add definition</strong>, using the namespace and key exactly as shown. Each one is optional: a product without the value simply does not show that line.</p>
+      <table>
+        <thead><tr><th scope="col">Namespace and key</th><th scope="col">Type</th><th scope="col">Example</th><th scope="col">Shown in</th></tr></thead>
+        <tbody>
+          <tr><td><code>eyewear.lens_width</code></td><td>Integer</td><td>46</td><td>Frame size diagram, size on product cards</td></tr>
+          <tr><td><code>eyewear.bridge_width</code></td><td>Integer</td><td>22</td><td>Frame size diagram, size on product cards</td></tr>
+          <tr><td><code>eyewear.temple_length</code></td><td>Integer</td><td>145</td><td>Frame size diagram, size on product cards</td></tr>
+          <tr><td><code>eyewear.lens_height</code></td><td>Integer</td><td>41</td><td>Frame size diagram</td></tr>
+          <tr><td><code>eyewear.frame_width</code></td><td>Integer</td><td>136</td><td>Overall width. Decides the fit size (XS to XL)</td></tr>
+          <tr><td><code>eyewear.fit_label</code></td><td>Single line text</td><td>M</td><td>Sets the fit size by hand instead of the overall width</td></tr>
+          <tr><td><code>eyewear.size</code></td><td>Single line text</td><td>46□22-145</td><td>Can be used instead of the three widths above</td></tr>
+          <tr><td><code>eyewear.material</code></td><td>Single line text</td><td>Hand-polished acetate</td><td>Specifications block</td></tr>
+          <tr><td><code>eyewear.weight</code></td><td>Integer or decimal</td><td>22</td><td>Specifications block (grams)</td></tr>
+          <tr><td><code>eyewear.nose_pad</code></td><td>Single line text</td><td>Adjustable titanium pads</td><td>Specifications block</td></tr>
+          <tr><td><code>eyewear.origin</code></td><td>Single line text</td><td>Sabae, Japan</td><td>Specifications block</td></tr>
+          <tr><td><code>eyewear.included</code></td><td>List of single line text</td><td>Hard case, Cleaning cloth</td><td>Included items block</td></tr>
+          <tr><td><code>eyewear.color_family</code></td><td>List of single line text</td><td>Black, Tortoise</td><td>Smart collections and filters for <em>Shop by color</em></td></tr>
+          <tr><td><code>eyewear.shape</code></td><td>List of single line text</td><td>Boston</td><td>Smart collections and filters by shape</td></tr>
+          <tr><td><code>eyewear.material_family</code></td><td>List of single line text</td><td>Acetate</td><td>Smart collections and filters by material</td></tr>
+          <tr><td><code>eyewear.returns_custom</code> and <code>eyewear.returns_text</code></td><td>True or false, multi-line text</td><td>—</td><td>Replace the returns text for one product</td></tr>
+          <tr><td><code>eyewear.warranty_custom</code> and <code>eyewear.warranty_text</code></td><td>True or false, multi-line text</td><td>—</td><td>Replace the warranty text for one product</td></tr>
+          <tr><td><code>eyewear.worn_photos</code></td><td>List of files (images)</td><td>—</td><td>Worn photos (product) section</td></tr>
+          <tr><td><code>eyewear.worn_note</code></td><td>Single line text</td><td>Medium face width, wearing size M</td><td>Line under the worn photos heading</td></tr>
+        </tbody>
+      </table>
+      <p>For articles, an <code>eyewear.products</code> metafield (list of products) shows the frames mentioned in the article under it.</p>
+      <div class="note">For <code>shape</code>, <code>color_family</code> and <code>material_family</code>, turn on <strong>Smart collections</strong> in the definition so you can build collections from them.</div>
+
+      <h2 id="settings">Theme settings</h2>
+      <p>In the theme editor, select the gear icon to open theme settings.</p>
+      <table>
+        <thead><tr><th scope="col">Group</th><th scope="col">What you can set</th></tr></thead>
+        <tbody>
+          <tr><td>Typography</td><td>Body and heading fonts from the Shopify font library. On Japanese pages, the device's Japanese fonts are used automatically after the chosen font.</td></tr>
+          <tr><td>Layout</td><td>Page width, page margin, corner radius, favicon.</td></tr>
+          <tr><td>Colors</td><td>Background, text, tinted background, accent, photo background and footer colors. Each section can also use a tinted or inverted background.</td></tr>
+          <tr><td>Product cards</td><td>Image ratio, brand name, frame size, color thumbnails, which option names count as frame color, tidy product names, the “New” badge, review stars.</td></tr>
+          <tr><td>Cart</td><td>Cart type (drawer or page), free shipping amount, order note, express checkout buttons in the drawer, suggested products.</td></tr>
+          <tr><td>Fit sizes</td><td>The overall widths that separate XS, S, M, L and XL, and the size guide page.</td></tr>
+          <tr><td>Try-on</td><td>A button for trying a frame on at your shop.</td></tr>
+          <tr><td>Returns and warranty</td><td>Written once and shown on every product. One product can use its own text through metafields.</td></tr>
+          <tr><td>Offer</td><td>A line such as a second-pair discount, under the price and in the announcement bar. The discount itself is set up in Discounts.</td></tr>
+          <tr><td>Ask us (chat app and email)</td><td>Links on the product page to a chat app (LINE, WhatsApp, Messenger and others) and email.</td></tr>
+          <tr><td>Social media</td><td>Account links for 12 networks, shown in the footer as icons or names.</td></tr>
+          <tr><td>Search and sharing</td><td>Image used when a page is shared, and breadcrumbs.</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="home">Home page sections</h2>
+      <table>
+        <thead><tr><th scope="col">Section</th><th scope="col">What it does</th></tr></thead>
+        <tbody>
+          <tr><td>Hero</td><td>A photo with a heading, text and up to two buttons. A separate photo can be set for phones.</td></tr>
+          <tr><td>Slideshow</td><td>Several banner images.</td></tr>
+          <tr><td>Shop by shape</td><td>Line drawings of 15 frame shapes. Choose a collection for each shape you sell; shapes without a collection are hidden.</td></tr>
+          <tr><td>Shop by color</td><td>Color swatches, each linking to a collection you choose or to a filtered list.</td></tr>
+          <tr><td>Featured collection</td><td>A row that scrolls sideways, or a grid. Can show ranking numbers.</td></tr>
+          <tr><td>Featured product</td><td>One product with its photos, videos, options and buy buttons.</td></tr>
+          <tr><td>Brands</td><td>A photo, name, one line and the number of frames for each brand.</td></tr>
+          <tr><td>Image with text</td><td>A photo and text, with optional rows such as prices.</td></tr>
+          <tr><td>Worn photos</td><td>Photos of people wearing frames, each linking to the frame.</td></tr>
+          <tr><td>Blog posts, Recently viewed, Reassurance row, Price list, Rich text, Collection list, Stockists, Custom Liquid</td><td>—</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="product">Product page</h2>
+      <p>Blocks can be added, removed and reordered in the editor.</p>
+      <table>
+        <thead><tr><th scope="col">Block</th><th scope="col">What it shows</th></tr></thead>
+        <tbody>
+          <tr><td>Title</td><td>Brand and product name, review stars.</td></tr>
+          <tr><td>Price</td><td>Price, compare-at price, unit price, tax note, what the price includes.</td></tr>
+          <tr><td>Selection guide</td><td>A short explanation above the options. Can be shown only when an option name contains a word you choose.</td></tr>
+          <tr><td>Color and lens options</td><td>Colors as photo tiles, other options as a list with the price difference. Available choices come first.</td></tr>
+          <tr><td>Prescription</td><td>How the customer sends their prescription: later, by sending current glasses, with a photo, by typing the numbers, or as last time. Shown only when a prescription lens is chosen.</td></tr>
+          <tr><td>Buy buttons</td><td>Quantity, purchase options (subscriptions), gift card recipient, express checkout, Shop Pay Installments, restock request.</td></tr>
+          <tr><td>Pickup availability</td><td>Whether the selected variant can be picked up.</td></tr>
+          <tr><td>Goes well with</td><td>Complementary products set in the Search &amp; Discovery app.</td></tr>
+          <tr><td>Reassurances</td><td>Up to four lines of your own, plus returns and warranty from theme settings.</td></tr>
+          <tr><td>Frame size</td><td>Fit size, size diagram and a link to the size guide.</td></tr>
+          <tr><td>Specifications, Included items</td><td>From product metafields.</td></tr>
+          <tr><td>Try-on, Ask us, Steps, Description, Details from description, Collapsible text, Custom Liquid, Apps</td><td>—</td></tr>
+        </tbody>
+      </table>
+      <p>For repairs and lens replacement, assign the <code>product.service</code> template to the product. It reads well without photos and shows the order steps.</p>
+
+      <h2 id="photos">Photos</h2>
+      <ul>
+        <li><strong>Photos per color.</strong> Start the alt text of a photo with <code>#</code> and the first word of the color name, for example <code>#C1 Aki in Black, front</code> for the color “C1 Black”. When that color is selected, only its photos are shown.</li>
+        <li><strong>Worn photos.</strong> If the alt text contains “wearing”, it is shown under the photo as a caption, for example <code>#C2 Medium face width, low nose bridge. Wearing size M</code>. The part starting with <code>#</code> is not shown.</li>
+        <li><strong>Image ratios.</strong> Product cards use the ratio set in Theme settings &gt; Product cards. Photos of other ratios are shown whole, never cropped.</li>
+        <li><strong>Focal point.</strong> Set the focal point of an image in the image picker so the important part stays in view on phones.</li>
+      </ul>
+
+      <h2 id="fit-sizes">Fit sizes</h2>
+      <p>Yoroi sorts frames into five fit sizes by overall width (<code>eyewear.frame_width</code>). The defaults are:</p>
+      <table>
+        <thead><tr><th scope="col">Size</th><th scope="col">Overall width</th></tr></thead>
+        <tbody>
+          <tr><td>XS</td><td>up to 129 mm</td></tr><tr><td>S</td><td>130 to 134 mm</td></tr><tr><td>M</td><td>135 to 139 mm</td></tr><tr><td>L</td><td>140 to 144 mm</td></tr><tr><td>XL</td><td>145 mm and over</td></tr>
+        </tbody>
+      </table>
+      <p>Change the limits in Theme settings &gt; Fit sizes. The size guide page uses the same numbers. To set a size by hand, fill in <code>eyewear.fit_label</code>.</p>
+
+      <h2 id="filters">Filters and search</h2>
+      <ul>
+        <li>Collection and search pages support Shopify's storefront filters. To filter by shape, color, fit size or material, add the metafields <code>eyewear.shape</code>, <code>eyewear.color_family</code>, <code>eyewear.fit_label</code> and <code>eyewear.material_family</code> as filters in the free Shopify Search &amp; Discovery app.</li>
+        <li>Search suggests products while customers type. The full search page also lists articles and pages.</li>
+      </ul>
+
+      <h2 id="code">Editing code</h2>
+      <div class="note"><strong>Duplicate your theme before editing code.</strong> Go to Online Store &gt; Themes, open the menu next to Yoroi and select Duplicate. Edit the copy, and publish it only after checking it.</div>
+      <p>Code changes are not covered by theme support, and they are not carried over when you update Yoroi. For custom work, we recommend hiring a <a href="https://www.shopify.com/partners/directory">Shopify Partner</a>. Small style changes can go in Theme settings &gt; Custom CSS without editing theme files.</p>
+
+      <h2 id="faq">Questions</h2>
+      <h3>The frame size diagram is not showing.</h3>
+      <p>Check that the product has at least one of <code>eyewear.lens_width</code>, <code>eyewear.bridge_width</code>, <code>eyewear.temple_length</code>, <code>eyewear.lens_height</code>, <code>eyewear.frame_width</code> or <code>eyewear.size</code>, and that the Frame size block is on the product template.</p>
+      <h3>A shape is missing from “Shop by shape”.</h3>
+      <p>Shapes without a collection are hidden on the storefront. Choose a collection for the shape in the section, and make sure the collection has products.</p>
+      <h3>All photos show, whatever color is selected.</h3>
+      <p>Photos switch by color only when their alt text starts with <code>#</code> and the first word of the color name. See <a href="#photos">Photos</a>.</p>
+      <h3>The prescription choices do not appear.</h3>
+      <p>They appear when the selected lens option contains one of the words in the Prescription block's setting (for example “Prescription”). Add your own wording there if your option names are different.</p>
+      <h3>Express checkout or Shop Pay Installments buttons are missing.</h3>
+      <p>These are shown by Shopify when the payment methods are turned on in Settings &gt; Payments.</p>
+      <h3>Can I use apps?</h3>
+      <p>Yes. Product and featured product sections accept app blocks, and the Custom Liquid section and blocks can hold app code.</p>
+
+      <h2 id="support-policy">Support policy</h2>
+      <ul>
+        <li>We answer questions about setting up and using Yoroi, and fix bugs in the theme.</li>
+        <li>We reply within two business days (Monday to Friday, Japan time).</li>
+        <li>Custom code, third-party apps and changes to the theme's design are not covered.</li>
+        <li>Send requests through the <a href="support.html">support form</a>. Include your store address and a screenshot if you can.</li>
+      </ul>
+
+      <h2 id="releases">Release notes</h2>
+      <h3>1.0.0</h3>
+      <ul>
+        <li>First release on the Shopify Theme Store.</li>
+        <li>Three presets: Yoroi, Kinari and Sumi.</li>
+        <li>Shop by shape, Shop by color, fit sizes from frame measurements, frame size diagram, lens options with price differences, prescription choices, worn photo captions.</li>
+      </ul>
+    </main>
+  </div>
+
+  <footer class="bottom">Yoroi · JEONG DESIGN</footer>
+</body>
+</html>
